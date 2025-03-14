@@ -138,7 +138,7 @@ io.on("connection", (socket) => {
         throw new Error("Unauthorized to access this canvas");
       }
 
-      io.to(canvasId).emit("canvasUpdated", { canvas });
+      socket.broadcast.to(canvasId).emit("canvasUpdated", { canvas });
     } catch (err) {
       console.error("Failed to load canvas:", err.message);
       socket.emit("error", { message: err.message });
